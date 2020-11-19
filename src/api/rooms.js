@@ -1,10 +1,10 @@
 import axios from 'axios';
-const API_URL = 'http://localhost:4000';
+import config from '../utils/config';
 
 export const create = ({ name, description }) => {
-  axios.post(API_URL, { name, description });
+  axios.post(config.socketURL, { name, description });
 };
 
 export const findAll = () => {
-  axios.get(API_URL);
+  axios.get(config.socketURL);
 };

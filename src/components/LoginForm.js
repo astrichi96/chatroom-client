@@ -5,24 +5,27 @@ import logo from '../logo.png';
 import styled from 'styled-components';
 
 const Title = styled.h1`
-  font-family: 'courier,arial,helvética;align-items 
+  font-family: 'courier,arial,helvética; 
+`;
+
+const DivStyled = styled.div`
+  text-align: center important!;
+  margin-top: 100px;
 `;
 
 const LoginForm = ({ handleSubmit }) => {
   const [username, setUsername] = useState('');
-  const [fullname, setFullname] = useState('');
 
   const handleUsernameChange = (event) => setUsername(event.target.value);
-  const handleFullnameChange = (event) => setFullname(event.target.value);
 
-  const onSubmit = () => {
-    handleSubmit(username, fullname);
+  const onSubmit = (event) => {
+    event.preventDefault();
+    handleSubmit(username);
     setUsername('');
-    setFullname('');
   };
 
   return (
-    <div>
+    <DivStyled>
       <Title>GET STARTED</Title>
       <p>Start in the new social APP</p>
       <img src={logo} alt="logo" />
@@ -34,17 +37,11 @@ const LoginForm = ({ handleSubmit }) => {
           value={username}
           onChange={handleUsernameChange}
         />
-        <TextField
-          name="fullname"
-          label="FullName"
-          value={fullname}
-          onChange={handleFullnameChange}
-        />
-        <IconButton type="submit" aria-label="delete">
+        <IconButton type="submit" aria-label="delete" color="primary">
           <SendIcon />
         </IconButton>
       </form>
-    </div>
+    </DivStyled>
   );
 };
 

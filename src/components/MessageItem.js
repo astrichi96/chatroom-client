@@ -28,17 +28,17 @@ const PersonalMessage = ({ text }) => {
   );
 };
 
-const MessageItem = ({ message = {}, userloggedIn = { _id: '34356' } }) => {
+const MessageItem = ({ message = {}, currentUser = {} }) => {
   const { user, text } = message;
 
   return (
     <div>
-      {user._id === userloggedIn._id ? (
+      {user._id === currentUser._id ? (
         <PersonalMessage text={text}></PersonalMessage>
       ) : (
         <ListItem>
           <ListItemIcon>
-            <Avatar>{handleAvatar(user.name)}</Avatar>
+            <Avatar>{handleAvatar(user.username)}</Avatar>
             <ListItemTextStyled primary={text} secondary={user.user} />
           </ListItemIcon>
         </ListItem>

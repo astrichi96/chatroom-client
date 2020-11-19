@@ -1,9 +1,12 @@
-import { socket } from '../api';
+import socket from '../api/socket';
 import NewMessage from '../components/NewMessage';
 
-const NewMessageContainer = () => {
+const NewMessageContainer = ({ currentUser }) => {
   const handleSubmit = (message) => {
-    return socket.emit('new-message', message);
+    socket.emit('new-message', {
+      text: message,
+      user: currentUser._id
+    });
   };
 
   return <NewMessage handleSubmit={handleSubmit} />;

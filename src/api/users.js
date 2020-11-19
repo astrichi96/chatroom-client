@@ -1,6 +1,5 @@
 import axios from 'axios';
-const API_URL = 'http://localhost:4000';
+import config from '../utils/config';
 
-export const login = ({ username, fullName }) => {
-  axios.post(API_URL, { username, fullName });
-};
+export const login = ({ username }) =>
+  axios.post(`${config.socketURL}/users`, { username });

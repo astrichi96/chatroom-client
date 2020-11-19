@@ -13,7 +13,8 @@ const NewMessage = ({ handleSubmit }) => {
 
   const handleInputChange = (event) => setMessage(event.target.value);
 
-  const onSubmit = () => {
+  const onSubmit = (event) => {
+    event.preventDefault();
     handleSubmit(message);
     setMessage('');
   };

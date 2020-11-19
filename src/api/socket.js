@@ -1,4 +1,7 @@
-import socket from 'socket.io-client';
+import { io } from 'socket.io-client';
 import config from '../utils/config';
 
-export default socket(config.socketURL);
+console.log({ conf: config.socketURL });
+export default io(config.socketURL, {
+  transports: ['websocket']
+});
