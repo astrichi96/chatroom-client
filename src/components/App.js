@@ -91,7 +91,10 @@ function App() {
                 />
               ))}
             {activeStep === 1 && user._id && !room._id && (
-              <RoomListContainer handleRoomSubmit={handleRoomSubmit} />
+              <RoomListContainer
+                handleRoomSubmit={handleRoomSubmit}
+                currentUser={user}
+              />
             )}
           </div>
         )}

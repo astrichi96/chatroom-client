@@ -6,7 +6,8 @@ const NewMessageContainer = ({ currentUser, currentRoom }) => {
     socket.emit('new-message', {
       text: message,
       user: currentUser._id,
-      room: currentRoom._id
+      room: currentRoom._id,
+      token: currentUser.access_token
     });
   };
 
