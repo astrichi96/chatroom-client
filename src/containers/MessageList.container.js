@@ -9,7 +9,7 @@ const MessageListContainer = ({ currentUser, currentRoom }) => {
     messagesActions.getAll({ room: currentRoom._id }).then(({ data }) => {
       setMessages(data);
     });
-  }, []);
+  }, [currentRoom._id]);
 
   useEffect(() => {
     socket.on('messages', (messages) => {

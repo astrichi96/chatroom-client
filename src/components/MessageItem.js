@@ -1,30 +1,16 @@
 import React from 'react';
-import {
-  ListItem,
-  ListItemIcon,
-  Avatar,
-  ListItemText
-} from '@material-ui/core';
-import styled from 'styled-components';
+import BotImage from '../utils/robot.svg';
+import { Avatar } from '@material-ui/core';
 
 import { handleAvatar } from '../utils';
 
-const PersonalMessageText = styled(ListItemText)`
-  text-align: right;
-  align-self: center;
-`;
-
-const ListItemTextStyled = styled(ListItemText)`
-  text-align: right;
-  align-self: center;
-  margin-left: 10px;
-`;
-
 const PersonalMessage = ({ text }) => {
   return (
-    <ListItem>
-      <PersonalMessageText primary={text} />
-    </ListItem>
+    <div class="bubbleWrapper">
+      <div class="inlineContainer own">
+        <div class="ownBubble own">{text}</div>
+      </div>
+    </div>
   );
 };
 
@@ -36,12 +22,36 @@ const MessageItem = ({ message = {}, currentUser = {} }) => {
       {user._id === currentUser._id ? (
         <PersonalMessage text={text}></PersonalMessage>
       ) : (
-        <ListItem>
-          <ListItemIcon>
-            <Avatar>{handleAvatar(user.username)}</Avatar>
-            <ListItemTextStyled primary={text} secondary={user.user} />
-          </ListItemIcon>
-        </ListItem>
+        <div class="bubbleWrapper">
+          <div className="inlineContainer">
+            {user.code === 'BOT' ? (
+              <img alt="bot" class="inlineIcon" src={BotImage} />
+            ) : (
+              <Avatar
+                style={{
+                  width: '25px',
+                  height: '25px',
+                  marginTop: 'auto',
+                  marginBottom: 'auto',
+                  fontSize: '12px'
+                }}
+              >
+                {handleAvatar(user.username)}
+              </Avatar>
+            )}
+
+            <div
+              className={
+                user.code === 'BOT' ? 'botBubble' : 'otherBubble other'
+              }
+            >
+              {user.code === 'BOT' && (
+                <div className="botUser">{user.username}</div>
+              )}
+              {text}
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

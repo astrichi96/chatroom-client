@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { rooms as roomsActions, socket } from '../api';
 import RoomForm from '../components/RoomForm';
 
-const RoomsListContainer = ({ setRoom }) => {
+const RoomsListContainer = ({ handleRoomSubmit }) => {
   const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
@@ -13,18 +13,18 @@ const RoomsListContainer = ({ setRoom }) => {
 
   const handleSubmit = (room) => {
     roomsActions.create({ name: room }).then(({ data }) => {
-      socket.emit('subscribe', {
+      socket.emit('join', {
         room: data._id
       });
-      setRoom(data);
+      handleRoomSubmit(data);
     });
   };
 
   const handleSelected = (room) => {
-    socket.emit('subscribe', {
+    socket.emit('join', {
       room: room._id
     });
-    setRoom(room);
+    handleRoomSubmit(room);
   };
 
   return (

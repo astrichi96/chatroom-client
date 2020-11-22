@@ -1,18 +1,18 @@
 import React from 'react';
-import { List } from '@material-ui/core';
 import MessageItem from './MessageItem';
+import '../styles.css';
 
 const MessageList = ({ messages, currentUser }) => {
   return (
-    <List>
+    <div className="bubbleWrapper">
       {messages.map((message) => (
         <MessageItem
           message={message}
           currentUser={currentUser}
           key={message._id}
-        ></MessageItem>
+        />
       ))}
-    </List>
+    </div>
   );
 };
 

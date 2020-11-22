@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button } from '@material-ui/core';
-import styled from 'styled-components';
 
-const Title = styled.h1`
-  font-family: 'courier,arial,helvética; 
-`;
-
-const LoginForm = ({ handleSubmit, openRegisterForm }) => {
+const LoginForm = ({ handleRegister, openRegisterForm }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -15,16 +10,13 @@ const LoginForm = ({ handleSubmit, openRegisterForm }) => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    handleSubmit(username, password);
+    handleRegister(username, password);
     setUsername('');
     setPassword('');
   };
 
   return (
     <div style={{ marginTop: '5px', marginBottom: '15px' }}>
-      <Title>GET STARTED</Title>
-      <p>Start in the new social APP</p>
-
       <form style={{ marginTop: '3rem' }} onSubmit={onSubmit}>
         <TextField
           name="username"
@@ -48,12 +40,11 @@ const LoginForm = ({ handleSubmit, openRegisterForm }) => {
           color="primary"
           size="large"
         >
-          Login
+          Sign up
         </Button>
       </form>
-
-      <Button color="primary" onClick={() => openRegisterForm(true)}>
-        Create account
+      <Button color="primary" onClick={() => openRegisterForm(false)}>
+        I have a account
       </Button>
     </div>
   );
